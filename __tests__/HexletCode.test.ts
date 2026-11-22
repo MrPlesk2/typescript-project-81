@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
-import HexletCode from "../src/index.js";
+import HexletCode from "@hexlet/code";
 
 const template = { gender: "m", job: "hexlet", name: "rob" };
 const getFixture = (name: string): string =>
