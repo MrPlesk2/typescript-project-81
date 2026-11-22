@@ -1,0 +1,32 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "A TypeScript library for generating HTML forms",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrPlesk2/typescript-project-81.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "oxlint && oxfmt --ignore-path=.oxfmtignore --check",
+    "lint-fix": "oxfmt --ignore-path=.oxfmtignore && oxlint --fix",
+    "test": "vitest run",
+    "test-coverage": "vitest run --coverage",
+    "typecheck": "tsc --project tsconfig.typecheck.json"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^5.1.1",
+    "oxfmt": "^0.79.0",
+    "oxlint": "^1.94.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
+  }
+}

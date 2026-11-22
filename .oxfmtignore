@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+package-lock.json
+.github/workflows/README.md
+.github/workflows/hexlet-check.yml
+__tests__/__fixtures__/
