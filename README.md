@@ -36,7 +36,7 @@ const form = HexletCode.formFor(template, { method: "post" }, (f) => {
 });
 
 console.log(form);
-// <form action="#" method="post"><label for="name">Name</label><input name="name" type="text" value="rob" class="user-input"><label for="job">Job</label><textarea cols="20" rows="50" name="job">hexlet</textarea><input type="submit" value="Wow"></form>
+// <form method="post" action="#"><label for="name">Name</label><input name="name" type="text" value="rob" class="user-input"><label for="job">Job</label><textarea cols="20" rows="50" name="job">hexlet</textarea><input type="submit" value="Wow"></form>
 ```
 
 Проверка типов и сборка пакета:

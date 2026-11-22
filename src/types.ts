@@ -4,6 +4,8 @@ export type Attributes = Record<string, AttributeValue>;
 
 export type FieldControl = Readonly<{
   attributes: Readonly<Attributes>;
+  label: string;
+  labelAttributes: Readonly<Attributes>;
   name: string;
   type: "input" | "textarea";
   value: string;

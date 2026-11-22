@@ -1,10 +1,8 @@
 import Tag from "./Tag.js";
 import type { FieldControl, FormControl, FormRepresentation } from "./types.js";
 
-const capitalize = (value: string): string => `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
-
 const renderField = (control: FieldControl): string => {
-  const label = new Tag("label", { for: control.name }, capitalize(control.name));
+  const label = new Tag("label", { for: control.name, ...control.labelAttributes }, control.label);
   const field =
     control.type === "textarea"
       ? new Tag(
@@ -33,7 +31,7 @@ const renderControl = (control: FormControl): string => {
 const renderForm = (form: FormRepresentation): string => {
   const body = form.controls.map(renderControl).join("");
 
-  return new Tag("form", { action: form.action, method: form.method }, body).toString();
+  return new Tag("form", { method: form.method, action: form.action }, body).toString();
 };
 
 export default renderForm;

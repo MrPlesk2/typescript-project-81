@@ -12,19 +12,19 @@ describe("HexletCode.formFor", () => {
   it("generates an empty form with default attributes", () => {
     const form = HexletCode.formFor(template, {}, () => {});
 
-    expect(form).toBe('<form action="#" method="post"></form>');
+    expect(form).toBe('<form method="post" action="#"></form>');
   });
 
   it("uses the provided URL as the form action", () => {
     const form = HexletCode.formFor(template, { url: "/users" }, () => {});
 
-    expect(form).toBe('<form action="/users" method="post"></form>');
+    expect(form).toBe('<form method="post" action="/users"></form>');
   });
 
   it("uses the provided form method", () => {
     const form = HexletCode.formFor(template, { method: "get" }, () => {});
 
-    expect(form).toBe('<form action="#" method="get"></form>');
+    expect(form).toBe('<form method="get" action="#"></form>');
   });
 
   it("generates input and textarea fields", () => {
@@ -70,6 +70,18 @@ describe("HexletCode.formFor", () => {
     });
 
     expect(form).toBe(getFixture("form-with-custom-submit.html"));
+  });
+
+  it("uses custom label text and attributes", () => {
+    const form = HexletCode.formFor(template, {}, (f) => {
+      f.input("name", {
+        label: "User",
+        labelHtml: { class: "form-label", id: "name-label" },
+      });
+      f.submit("Ok");
+    });
+
+    expect(form).toBe(getFixture("form-with-custom-label.html"));
   });
 
   it("throws when the field does not exist in the template", () => {

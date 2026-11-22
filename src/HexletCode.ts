@@ -1,5 +1,5 @@
 import renderForm from "./render.js";
-import type { Attributes, FormControl } from "./types.js";
+import type { AttributeValue, Attributes, FormControl } from "./types.js";
 
 export type FormOptions = {
   method?: string;
@@ -8,8 +8,19 @@ export type FormOptions = {
 
 export type FormTemplate = Record<string, unknown>;
 
-export type InputOptions = Attributes & {
+export type InputOptions = {
+  [name: string]: unknown;
   as?: "textarea";
+  label?: string;
+  labelHtml?: Attributes;
+};
+
+const capitalize = (value: string): string => `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
+
+const isAttributeEntry = (entry: [string, unknown]): entry is [string, AttributeValue] => {
+  const valueType = typeof entry[1];
+
+  return valueType === "string" || valueType === "number";
 };
 
 export default class HexletCode {
@@ -42,11 +53,19 @@ export default class HexletCode {
     }
 
     const value = String(this.template[name]);
-    const { as, ...attributes } = options;
+    const { as, label = capitalize(name), labelHtml = {}, ...htmlAttributes } = options;
+    const attributes = Object.fromEntries(Object.entries(htmlAttributes).filter(isAttributeEntry));
 
     this.controls = [
       ...this.controls,
-      { attributes: { ...attributes }, name, type: as ?? "input", value },
+      {
+        attributes,
+        label,
+        labelAttributes: { ...labelHtml },
+        name,
+        type: as ?? "input",
+        value,
+      },
     ];
   }
 
